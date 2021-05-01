@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\EventosController;
+use App\Http\Controllers\HinosController;
+use App\Http\Controllers\IgrejasController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,4 +18,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::prefix('/eventos')->name('eventos.')->group(function () {
+    Route::get('/lista-eventos', [EventosController::class, 'listaEventos'])->name('lista_eventos');
+});
+
+Route::prefix('/igrejas')->name('igrejas.')->group(function () {
+    Route::get('/lista-igrejas', 'IgrejasController@listaIgrejas')->name('lista_igrejas');
+});
+
+Route::prefix('/hinos')->name('hinos.')->group(function () {
+    Route::get('/lista-hinos', 'HinosController@listaHinos')->name('lista_hinos');
 });
