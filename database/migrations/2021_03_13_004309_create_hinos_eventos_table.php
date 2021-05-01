@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateHinoEventoTable extends Migration
+class CreateHinosEventosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateHinoEventoTable extends Migration
      */
     public function up()
     {
-        Schema::create('hino_evento', function (Blueprint $table) {
+        Schema::create('hinos_eventos', function (Blueprint $table) {
             $table->bigIncrements('id')->index();
             $table->integer('sequencia');
 			$table->unsignedBigInteger('id_hino')->index();
@@ -32,6 +32,6 @@ class CreateHinoEventoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hino_evento');
+        Schema::dropIfExists('hinos_eventos');
     }
 }
