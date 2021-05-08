@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::prefix('/eventos')->name('eventos.')->group(function () {
     Route::get('/listar', [EventosController::class, 'listarEventos'])->name('listar');
     Route::post('/cadastrar', [EventosController::class, 'cadastrarEvento'])->name('cadastrar');
+    Route::post('/excluir', [EventosController::class, 'excluirEvento'])->name('excluir');
 });
 
 Route::prefix('/igrejas')->name('igrejas.')->group(function () {
@@ -37,4 +38,11 @@ Route::prefix('/hinos')->name('hinos.')->group(function () {
     Route::post('/cadastrar', [HinosController::class, 'cadastrarHino'])->name('cadastrar');
     Route::post('/editar', [HinosController::class, 'editarHino'])->name('editar');
     Route::post('/excluir', [HinosController::class, 'excluirHino'])->name('excluir');
+});
+
+Route::prefix('/grupos')->name('grupos.')->group(function () {
+    Route::get('/listar', [GruposController::class, 'listarGrupos'])->name('listar');
+    Route::post('/cadastrar', [GruposController::class, 'cadastrarGrupo'])->name('cadastrar');
+    Route::post('/editar', [GruposController::class, 'editarGrupo'])->name('editar');
+    Route::post('/excluir', [GruposController::class, 'excluirGrupo'])->name('excluir');
 });
