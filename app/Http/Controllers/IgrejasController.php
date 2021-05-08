@@ -12,7 +12,7 @@ use DB;
 class IgrejasController extends Controller
 {
     public function listarIgrejas(Request $request){
-        $igrejas = Igreja::all();
+        $igrejas = Igreja::with('eventos')->get();
 
         return response()->json([
             'igrejas' => $igrejas

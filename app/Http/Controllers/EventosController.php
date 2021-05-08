@@ -13,7 +13,9 @@ use DB;
 class EventosController extends Controller
 {
     public function listarEventos(Request $request){
-        $eventos = Evento::all();
+        $eventos = Evento::with('hinos')->whereHas('grupos', function ($query) use ($request) {
+            $query->where('id', $request->id_grupo);
+        })->get();
 
         return response()->json([
             'eventos' => $eventos
@@ -35,6 +37,14 @@ class EventosController extends Controller
             $hinoEvento->save();
 
         }
+
+        return response()->json(['status' => 200]);
+    }
+
+    public function excluirEvento(Request $request){
+        HinoEvento::where('id_evento', $request->id)->delete();
+
+        Evento::find($request->id)->delete();
 
         return response()->json(['status' => 200]);
     }
